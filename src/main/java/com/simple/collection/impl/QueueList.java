@@ -2,14 +2,22 @@ package com.simple.collection.impl;
 
 
 import com.simple.collection.AbstractList;
+import com.simple.collection.ListADT;
 import com.simple.collection.Queue;
 
 import java.util.Comparator;
 
 /**
  * Created by akeem on 10/5/17.
+ *
+ * @param <T> the type parameter
  */
 public class QueueList<T> implements Queue<T> {
+
+    /**
+     * The List.
+     */
+    ListADT<T> list = new ResizingList<T>();
 
     @Override
     public boolean isEmpty() {
@@ -18,47 +26,29 @@ public class QueueList<T> implements Queue<T> {
 
     @Override
     public T peek() {
-        return null;
+        return list.peek();
     }
 
-    @Override
-    public int indexOf(T t) {
-        return 0;
-    }
 
     @Override
     public T pop() {
-        return null;
+        return list.pop();
     }
 
-    @Override
-    public T get(int index) {
-        return null;
-    }
-
-    @Override
-    public boolean remove(T t) {
-        return false;
-    }
-
-    @Override
-    public void sort(Comparator<? super T> c) {
-
-    }
 
     @Override
     public void push(T t) {
-
+        list.push(t);
     }
 
     @Override
     public int size() {
-        return 0;
+        return list.size();
     }
 
     @Override
     public void clear() {
-
+        list.clear();
     }
 
     @Override
@@ -66,18 +56,14 @@ public class QueueList<T> implements Queue<T> {
         return null;
     }
 
-    @Override
-    public AbstractList<T> subList(int fromIndex, int toIndex) {
-        return null;
-    }
 
     @Override
     public T poll() {
-        return null;
+        return list.pop();
     }
 
     @Override
     public void offer(T t) {
-
+        list.push(t);
     }
 }

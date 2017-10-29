@@ -2,6 +2,8 @@ package com.simple.collection;
 
 import com.simple.collection.impl.ResizingArray;
 import com.simple.collection.impl.ResizingList;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,17 +12,21 @@ import org.junit.Test;
  */
 public class ResizingListTest {
 
-    ListADT<Double> doubleArray;
-    ListADT<Integer> intArray;
-    ListADT<String> stringArray;
+
+    ListADT<String> stringList;
+    ListADT<Integer> intList;
 
     @Before
     public void setUp() {
-        doubleArray = new ResizingList<>();
-        intArray = new ResizingList<Integer>();
-        stringArray = new ResizingList<String>();
+        stringList = new ResizingList<>();
+        intList = new ResizingList<>();
     }
 
+    @After
+    public void tearDown() {
+        intList = new ResizingArray<Integer>();
+        stringList = new ResizingArray<String>();
+    }
 
     @Test
     public void indexOfTest() {
@@ -46,14 +52,57 @@ public class ResizingListTest {
     public void popTest() {
 
     }
+    @Test
+    public void removeIndexTest() {
+
+    }
+
+    @Test
+    public void removeElement() {
+
+    }
 
     @Test
     public void pushTest() {
+        Assert.assertEquals(0, stringList.size());
+        stringList.push("Hello");
+        Assert.assertEquals(1, stringList.size());
+        Assert.assertEquals("Hello", stringList.get(0));
+        stringList.push("World");
+        Assert.assertEquals(2, stringList.size());
+        Assert.assertEquals("World", stringList.get(1));
+
+
+    }
+
+    @Test
+    public void pushIntegerTest() {
+
+        for (int i = 0; i < 100; i++) {
+            intList.push(i);
+        }
+
+        Assert.assertEquals(100, intList.size());
+
+
+        for (int i = 0; i < 100; i++) {
+            Assert.assertEquals(new Integer(i), intList.get(i));
+        }
+
 
     }
 
     @Test
     public void sizeTest() {
+        Assert.assertTrue(intList.isEmpty());
+        Assert.assertTrue(stringList.isEmpty());
+        Assert.assertEquals(0, intList.size());
+        Assert.assertEquals(0, stringList.size());
+        intList.push(0);
+        Assert.assertEquals(1, intList.size());
+        stringList.push("Hello");
+        Assert.assertFalse(stringList.isEmpty());
+        Assert.assertEquals(1, stringList.size());
 
     }
 }

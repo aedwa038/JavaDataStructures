@@ -1,6 +1,7 @@
 package com.simple.collection.impl;
 
 import com.simple.collection.AbstractList;
+import com.simple.collection.ListADT;
 import com.simple.collection.StackADT;
 
 /**
@@ -8,34 +9,41 @@ import com.simple.collection.StackADT;
  */
 public class StackArrayImpl<T> implements StackADT<T> {
 
+    private ListADT<T> listADT;
+
+
+    public StackArrayImpl() {
+        listADT = new ResizingList<T>();
+    }
+
     @Override
     public boolean isEmpty() {
-        return false;
+        return listADT.isEmpty();
     }
 
     @Override
     public T peek() {
-        return null;
+        return listADT.peek();
     }
 
     @Override
     public T pop() {
-        return null;
+        return listADT.pop();
     }
 
     @Override
     public void push(T t) {
-
+        listADT.push(t);
     }
 
     @Override
     public int size() {
-        return 0;
+        return listADT.size();
     }
 
     @Override
     public void clear() {
-
+        listADT.clear();
     }
 
     @Override
@@ -43,8 +51,4 @@ public class StackArrayImpl<T> implements StackADT<T> {
         return null;
     }
 
-    @Override
-    public AbstractList<T> subList(int fromIndex, int toIndex) {
-        return null;
-    }
 }

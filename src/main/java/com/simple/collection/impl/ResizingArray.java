@@ -10,20 +10,25 @@ import java.util.Comparator;
  */
 public class ResizingArray<T> implements ListADT<T> {
 
-    private T[] t;
+    private T[] arrayList;
     private int size;
 
 
     public ResizingArray() {
         size = 0;
-        t  = (T[]) new Object [10];
+        arrayList = (T[]) new Object [10];
+    }
+
+    public ResizingArray(T[] arrayList, int size) {
+        this.size = size;
+        this.arrayList = arrayList;
     }
 
     public void push(T newObject) {
         if(full()) {
-            resize(t.length * 2);
+            resize(arrayList.length * 2);
         }
-        t[size++] = newObject;
+        arrayList[size++] = newObject;
     }
 
     public T pop() {
@@ -31,9 +36,9 @@ public class ResizingArray<T> implements ListADT<T> {
             return null;
         }
 
-        T toReturn = t[--size];
+        T toReturn = arrayList[--size];
         if(halfEmpty()) {
-            resize(t.length / 2);
+            resize(arrayList.length / 2);
         }
         return toReturn;
     }
@@ -43,14 +48,14 @@ public class ResizingArray<T> implements ListADT<T> {
         if(isEmpty()) {
             return null;
         }
-        return t[size - 1];
+        return arrayList[size - 1];
     }
 
     public T get(int index) {
-        if(size < 0 && size >= t.length) {
+        if(size < 0 && size >= arrayList.length) {
             return null;
         }
-        return t[index];
+        return arrayList[index];
     }
 
     public boolean isEmpty() {
@@ -63,8 +68,8 @@ public class ResizingArray<T> implements ListADT<T> {
 
     public int indexOf(T object) {
 
-        for (int i = 0; i < this.t.length; i++) {
-            if(object.equals(t[i])) {
+        for (int i = 0; i < this.arrayList.length; i++) {
+            if(object.equals(arrayList[i])) {
                 return i;
             }
         }
@@ -73,7 +78,29 @@ public class ResizingArray<T> implements ListADT<T> {
 
     @Override
     public boolean remove(T t) {
-        return false;
+        if(isEmpty() || t == null) {
+            return false;
+        }
+        int index = -1;
+        for (int i = 0; i < arrayList.length; i++) {
+            if(arrayList[i].equals(t)) {
+                index = i;
+            }
+        }
+
+        if(index == -1) {
+            return false;
+        }
+
+        for (int i = index + 1; i < arrayList.length;) {
+            arrayList[index] = arrayList[i];
+            index++;
+            i++;
+        }
+        if(halfEmpty()) {
+            resize(arrayList.length / 2);
+        }
+        return true;
     }
 
     @Override
@@ -83,7 +110,7 @@ public class ResizingArray<T> implements ListADT<T> {
 
     @Override
     public void clear() {
-
+        this.size = 0;
     }
 
     @Override
@@ -93,13 +120,22 @@ public class ResizingArray<T> implements ListADT<T> {
 
     @Override
     public AbstractList<T> subList(int fromIndex, int toIndex) {
-        return null;
+        if(fromIndex < 0 || toIndex > size || (fromIndex >  toIndex)) {
+            return null;
+        }
+
+        T [] list = (T[]) new Object [10];
+        int size = fromIndex - toIndex;
+        for (int i = fromIndex; i < toIndex; i++) {
+            list[i] = arrayList[i];
+        }
+        return new ResizingArray<T>(list, size);
     }
 
     void resize(int newLength) {
         T newT[] = (T[]) new Object[ newLength];
-        copy(t, newT);
-        t = newT;
+        copy(arrayList, newT);
+        arrayList = newT;
     }
 
     void copy(T[] t, T[] newT ) {
@@ -110,13 +146,23 @@ public class ResizingArray<T> implements ListADT<T> {
     }
 
     boolean halfEmpty() {
-        return (( size() * 4) < t.length);
+        return (( size() * 4) < arrayList.length);
     }
 
     boolean full() {
-        return (size == t.length);
+        return (size == arrayList.length);
     }
 
+    @Override
+    public void remove(int index) {
+        for (int i = index + 1; i < arrayList.length;) {
+            arrayList[index] = arrayList[i];
+            index++;
+            i++;
+        }
 
-
+        if(halfEmpty()) {
+            resize(arrayList.length / 2);
+        }
+    }
 }

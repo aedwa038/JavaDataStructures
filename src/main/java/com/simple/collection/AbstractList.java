@@ -39,5 +39,4 @@ public interface AbstractList<T> {
 
     <T> T[] toArray();
 
-    AbstractList<T> subList(int fromIndex, int toIndex);
 }

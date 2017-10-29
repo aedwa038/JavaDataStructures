@@ -20,30 +20,12 @@ public class QueueArray<T> implements Queue<T> {
         return null;
     }
 
-    @Override
-    public int indexOf(T t) {
-        return 0;
-    }
 
     @Override
     public T pop() {
         return null;
     }
 
-    @Override
-    public T get(int index) {
-        return null;
-    }
-
-    @Override
-    public boolean remove(T t) {
-        return false;
-    }
-
-    @Override
-    public void sort(Comparator<? super T> c) {
-
-    }
 
     @Override
     public void push(T t) {
@@ -65,10 +47,6 @@ public class QueueArray<T> implements Queue<T> {
         return null;
     }
 
-    @Override
-    public AbstractList<T> subList(int fromIndex, int toIndex) {
-        return null;
-    }
 
     @Override
     public T poll() {

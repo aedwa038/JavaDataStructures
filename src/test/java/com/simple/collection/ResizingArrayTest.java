@@ -101,4 +101,14 @@ public class ResizingArrayTest {
         Assert.assertEquals((Double) number, doubleArray.peek());
     }
 
+    @Test
+    public void removeIndexTest() {
+
+    }
+
+    @Test
+    public void removeElement() {
+
+    }
+
 }
