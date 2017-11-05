@@ -1,6 +1,5 @@
 package com.simple.collection.utils;
 
-import javafx.scene.paint.Stop;
 import org.junit.Assert;
 import org.junit.Test;
 
