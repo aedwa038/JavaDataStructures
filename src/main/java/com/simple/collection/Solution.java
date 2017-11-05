@@ -1,5 +1,6 @@
 package com.simple.collection;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.text.*;
 import java.math.*;
@@ -10,9 +11,6 @@ import java.util.stream.IntStream;
  * Created by akeem on 10/29/17.
  */
 public class Solution {
-
-
-
 
 
 
