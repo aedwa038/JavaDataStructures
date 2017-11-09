@@ -6,7 +6,7 @@ import com.simple.collection.utils.SortUtils;
 /**
  * Created by akeemedwards on 11/2/17.
  */
-public class QuickSort {
+public final class QuickSort {
     static final int CUT_OFF = 15;
 
     public static void sort(Comparable a[]) {

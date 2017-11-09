@@ -5,7 +5,7 @@ import com.simple.collection.utils.SortUtils;
 /**
  * Created by akeemedwards on 11/1/17.
  */
-public class MergeSort {
+public final class MergeSort {
 
     static Comparable[] aux;
 

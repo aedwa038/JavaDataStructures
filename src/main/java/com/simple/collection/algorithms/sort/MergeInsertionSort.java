@@ -5,7 +5,7 @@ import com.simple.collection.utils.SortUtils;
 /**
  * Created by akeemedwards on 11/2/17.
  */
-public class MergeInsertionSort {
+public final class MergeInsertionSort {
 
     static Comparable[] aux;
     static final int CUT_OFF = 15;

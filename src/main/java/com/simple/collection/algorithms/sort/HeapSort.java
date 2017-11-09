@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  * Created by akeemedwards on 11/8/17.
  */
-public class HeapSort {
+public final class HeapSort {
 
     public static <Key extends Comparable> void sort(Comparable a[], Comparator<Key> keyComparator) {
         if(SortUtils.isSorted(a)) {

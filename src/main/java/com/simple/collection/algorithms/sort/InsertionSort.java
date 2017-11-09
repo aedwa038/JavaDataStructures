@@ -5,7 +5,7 @@ import com.simple.collection.utils.SortUtils;
 /**
  * Created by akeemedwards on 10/31/17.
  */
- public class InsertionSort {
+ public final class InsertionSort {
 
     public static void sort(Comparable a[]) {
         if(!SortUtils.isSorted(a)) {
