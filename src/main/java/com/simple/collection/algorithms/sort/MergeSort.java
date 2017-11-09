@@ -1,12 +1,13 @@
-package com.simple.collection.utils;
+package com.simple.collection.algorithms.sort;
+
+import com.simple.collection.utils.SortUtils;
 
 /**
- * Created by akeemedwards on 11/2/17.
+ * Created by akeemedwards on 11/1/17.
  */
-public class MergeInsertionSort {
+public class MergeSort {
 
     static Comparable[] aux;
-    static final int CUT_OFF = 15;
 
     public static void sort(Comparable a[]) {
         if(!SortUtils.isSorted(a)) {
@@ -16,11 +17,6 @@ public class MergeInsertionSort {
     }
 
     public static void sort(Comparable a[] , int low , int high) {
-
-        if(high <=  low + CUT_OFF - 1) {
-            InsertionSort.sort(a, low, high);
-            return;
-        }
         if(high <= low) return;
         int mid = low + (high - low )/ 2;
         sort(a, low, mid);
@@ -54,4 +50,5 @@ public class MergeInsertionSort {
 
 
     }
+
 }

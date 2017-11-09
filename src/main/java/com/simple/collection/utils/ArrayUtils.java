@@ -1,5 +1,7 @@
 package com.simple.collection.utils;
 
+import com.simple.collection.algorithms.sort.InsertionSort;
+
 /**
  * Created by akeemedwards on 10/31/17.
  */

@@ -1,9 +1,6 @@
-package com.simple.collection;
+package com.simple.collection.queue;
 
 import com.simple.collection.AbstractList;
-import com.simple.collection.ListADT;
-
-import java.util.Comparator;
 
 /**
  * Created by akeem on 10/5/17.

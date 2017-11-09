@@ -1,9 +1,11 @@
-package com.simple.collection.utils;
+package com.simple.collection.algorithms.sort;
+
+import com.simple.collection.utils.SortUtils;
 
 /**
  * Created by akeemedwards on 10/31/17.
  */
- class InsertionSort {
+ public class InsertionSort {
 
     public static void sort(Comparable a[]) {
         if(!SortUtils.isSorted(a)) {

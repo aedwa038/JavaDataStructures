@@ -1,6 +1,8 @@
 package com.simple.collection.utils;
 
 
+import com.simple.collection.utils.SortUtils;
+
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -8,7 +10,7 @@ import java.util.stream.IntStream;
 /**
  * Created by akeemedwards on 10/31/17.
  */
-class ShuffleUtils {
+public class ShuffleUtils {
 
 
 

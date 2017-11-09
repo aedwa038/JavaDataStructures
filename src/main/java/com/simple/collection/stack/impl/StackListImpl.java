@@ -1,24 +1,24 @@
-package com.simple.collection.impl;
+package com.simple.collection.stack.impl;
 
-
-import com.simple.collection.ListADT;
-import com.simple.collection.Queue;
+import com.simple.collection.list.ListADT;
+import com.simple.collection.list.impl.ResizingList;
+import com.simple.collection.stack.StackADT;
 
 /**
  * Created by akeem on 10/5/17.
  *
  * @param <T> the type parameter
  */
-public class QueueList<T> implements Queue<T> {
+public class StackListImpl <T> implements StackADT<T> {
 
     /**
      * The List.
      */
-    ListADT<T> list = new ResizingList<T>();
+    ListADT<T> list = new ResizingList<>();
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return list.isEmpty();
     }
 
     @Override
@@ -26,12 +26,10 @@ public class QueueList<T> implements Queue<T> {
         return list.peek();
     }
 
-
     @Override
     public T pop() {
         return list.pop();
     }
-
 
     @Override
     public void push(T t) {
@@ -53,14 +51,4 @@ public class QueueList<T> implements Queue<T> {
         return null;
     }
 
-
-    @Override
-    public T poll() {
-        return list.pop();
-    }
-
-    @Override
-    public void offer(T t) {
-        list.push(t);
-    }
 }

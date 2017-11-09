@@ -1,4 +1,4 @@
-package com.simple.collection.impl;
+package com.simple.collection.queue;
 
 import com.simple.collection.utils.SortUtils;
 

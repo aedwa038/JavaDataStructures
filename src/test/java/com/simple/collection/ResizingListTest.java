@@ -1,7 +1,8 @@
 package com.simple.collection;
 
-import com.simple.collection.impl.ResizingArray;
-import com.simple.collection.impl.ResizingList;
+import com.simple.collection.list.impl.ResizingArray;
+import com.simple.collection.list.impl.ResizingList;
+import com.simple.collection.list.ListADT;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,4 +1,7 @@
-package com.simple.collection.utils;
+package com.simple.collection.algorithms.sort;
+
+import com.simple.collection.utils.ShuffleUtils;
+import com.simple.collection.utils.SortUtils;
 
 /**
  * Created by akeemedwards on 11/2/17.

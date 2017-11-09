@@ -1,6 +1,6 @@
-package com.simple.collection.impl;
+package com.simple.collection.queue.impl;
 
-import com.simple.collection.Queue;
+import com.simple.collection.queue.Queue;
 
 /**
  * Created by akeem on 10/5/17.

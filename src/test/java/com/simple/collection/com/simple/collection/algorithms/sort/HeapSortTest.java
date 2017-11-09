@@ -1,19 +1,23 @@
-package com.simple.collection.utils;
+package com.simple.collection.com.simple.collection.algorithms.sort;
 
+import com.simple.collection.algorithms.sort.HeapSort;
+import com.simple.collection.utils.ShuffleUtils;
+import com.simple.collection.utils.SortUtils;
+import com.simple.collection.utils.StopWatch;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
 
 /**
- * Created by akeemedwards on 10/31/17.
+ * Created by akeemedwards on 11/8/17.
  */
-public class InsertionSortTest {
+public class HeapSortTest {
 
     @Test
     public void sortTest1() {
         Integer[] a = new Integer[]{1,2,3,4,5,6,7,8,9};
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }
@@ -21,7 +25,7 @@ public class InsertionSortTest {
     @Test
     public void sortTest() {
         Integer[] a = new Integer[]{2,1,4,3,6,5,9,8,7};
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
@@ -30,7 +34,7 @@ public class InsertionSortTest {
     @Test
     public void sortTest2() {
         Integer[] a = new Integer[]{9,8,7,6,5,4,3,2,1};
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
@@ -43,20 +47,9 @@ public class InsertionSortTest {
         IntStream.range(0, a.length).forEach(value -> a[value] = value);
         ShuffleUtils.shuffle(a);
         SortUtils.show(a);
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
-
-    }
-
-    @Test
-    public void sortTest4() {
-        Integer[] a = new Integer[]{7, 14, 1, 11, 3, 6, 12, 0, 4, 5, 2, 9, 13, 8, 10 };
-        SortUtils.show(a);
-        InsertionSort.sort(a, 4, 10);
-        SortUtils.show(a);
-        Assert.assertFalse(SortUtils.isSorted(a));
-
 
     }
 
@@ -68,7 +61,7 @@ public class InsertionSortTest {
 
         SortUtils.show(a);
         StopWatch stopWatch = new StopWatch();
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         stopWatch.log();
         SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
@@ -76,22 +69,23 @@ public class InsertionSortTest {
     }
 
 
-   // @Test
+    @Test
     public void sortVeryLargeTest() {
         Integer[] a = new Integer[100000];
         IntStream.range(0, a.length).forEach(value -> a[value] = value);
         ShuffleUtils.shuffle(a);
 
-        SortUtils.show(a);
+        //SortUtils.show(a);
         StopWatch stopWatch = new StopWatch();
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         stopWatch.log();
-        SortUtils.show(a);
+        //SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }
 
 
+    @Test
     public void sortVeryVeryLargeTest() {
         Integer[] a = new Integer[1000000];
         IntStream.range(0, a.length).forEach(value -> a[value] = value);
@@ -99,7 +93,7 @@ public class InsertionSortTest {
 
         //SortUtils.show(a);
         StopWatch stopWatch = new StopWatch();
-        InsertionSort.sort(a);
+        HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         stopWatch.log();
         //SortUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));

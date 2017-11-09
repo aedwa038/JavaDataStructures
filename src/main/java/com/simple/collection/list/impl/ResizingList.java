@@ -1,7 +1,7 @@
-package com.simple.collection.impl;
+package com.simple.collection.list.impl;
 
 import com.simple.collection.AbstractList;
-import com.simple.collection.ListADT;
+import com.simple.collection.list.ListADT;
 
 import java.util.Comparator;
 

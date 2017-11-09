@@ -1,8 +1,8 @@
-package com.simple.collection.impl;
+package com.simple.collection.stack.impl;
 
-import com.simple.collection.AbstractList;
-import com.simple.collection.ListADT;
-import com.simple.collection.StackADT;
+import com.simple.collection.list.ListADT;
+import com.simple.collection.list.impl.ResizingList;
+import com.simple.collection.stack.StackADT;
 
 /**
  * Created by akeem on 10/5/17.

@@ -1,5 +1,9 @@
-package com.simple.collection.utils;
+package com.simple.collection.com.simple.collection.algorithms.sort;
 
+import com.simple.collection.algorithms.sort.MergeInsertionSort;
+import com.simple.collection.utils.ShuffleUtils;
+import com.simple.collection.utils.SortUtils;
+import com.simple.collection.utils.StopWatch;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package com.simple.collection;
 
-import com.simple.collection.impl.MaxPQ;
+import com.simple.collection.queue.MaxPQ;
 import com.simple.collection.utils.SortUtils;
 import org.junit.Assert;
 import org.junit.Test;

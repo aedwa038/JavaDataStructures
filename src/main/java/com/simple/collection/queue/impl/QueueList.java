@@ -1,26 +1,25 @@
-package com.simple.collection.impl;
+package com.simple.collection.queue.impl;
 
-import com.simple.collection.AbstractList;
-import com.simple.collection.ListADT;
-import com.simple.collection.StackADT;
 
-import java.util.List;
+import com.simple.collection.list.impl.ResizingList;
+import com.simple.collection.list.ListADT;
+import com.simple.collection.queue.Queue;
 
 /**
  * Created by akeem on 10/5/17.
  *
  * @param <T> the type parameter
  */
-public class StackListImpl <T> implements StackADT<T> {
+public class QueueList<T> implements Queue<T> {
 
     /**
      * The List.
      */
-    ListADT<T> list = new ResizingList<>();
+    ListADT<T> list = new ResizingList<T>();
 
     @Override
     public boolean isEmpty() {
-        return list.isEmpty();
+        return false;
     }
 
     @Override
@@ -28,10 +27,12 @@ public class StackListImpl <T> implements StackADT<T> {
         return list.peek();
     }
 
+
     @Override
     public T pop() {
         return list.pop();
     }
+
 
     @Override
     public void push(T t) {
@@ -53,4 +54,14 @@ public class StackListImpl <T> implements StackADT<T> {
         return null;
     }
 
+
+    @Override
+    public T poll() {
+        return list.pop();
+    }
+
+    @Override
+    public void offer(T t) {
+        list.push(t);
+    }
 }

@@ -1,4 +1,6 @@
-package com.simple.collection;
+package com.simple.collection.list;
+
+import com.simple.collection.AbstractList;
 
 import java.util.Comparator;
 
@@ -9,7 +11,7 @@ import java.util.Comparator;
  *
  * @param <T> the type parameter
  */
-public interface ListADT< T > extends  AbstractList <T> {
+public interface ListADT< T > extends AbstractList<T> {
     /**
      * Get the index of an item in the list.
      *

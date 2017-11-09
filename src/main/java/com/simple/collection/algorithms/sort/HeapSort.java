@@ -1,4 +1,6 @@
-package com.simple.collection.utils;
+package com.simple.collection.algorithms.sort;
+
+import com.simple.collection.utils.SortUtils;
 
 import java.util.Comparator;
 

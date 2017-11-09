@@ -44,7 +44,7 @@ public class SortUtils {
         return true;
     }
 
-    static void copy(Comparable a[], Comparable[] aux, int low , int high) {
+    public static void copy(Comparable a[], Comparable[] aux, int low , int high) {
         for (int i = low; i <= high; i++) {
             aux[i] = a[i];
         }
