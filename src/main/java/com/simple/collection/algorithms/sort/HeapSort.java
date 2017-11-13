@@ -9,7 +9,7 @@ import java.util.Comparator;
  */
 public final class HeapSort {
 
-    public static <Key extends Comparable> void sort(Comparable a[], Comparator<Key> keyComparator) {
+    public static <Key extends Comparable> void sort(Key a[], Comparator<Key> keyComparator) {
         if(SortUtils.isSorted(a)) {
            return;
         }
@@ -26,7 +26,7 @@ public final class HeapSort {
 
     }
 
-    public static  void sink(Comparable[] a, int j,int size, Comparator keyComparator) {
+    private static <Key extends Comparable>  void sink(Key[] a, int j,int size, Comparator keyComparator) {
         while (2 * j <= size) {
             int left = 2 * j;
             int right = 2 * j + 1;

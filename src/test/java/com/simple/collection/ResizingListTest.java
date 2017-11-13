@@ -76,6 +76,7 @@ public class ResizingListTest {
 
     }
 
+
     @Test
     public void pushIntegerTest() {
 
@@ -90,6 +91,24 @@ public class ResizingListTest {
             Assert.assertEquals(new Integer(i), intList.get(i));
         }
 
+
+    }
+
+    @Test
+    public void testforeach() {
+
+        for (int i = 0; i < 100; i++) {
+            intList.push(i);
+        }
+
+        Assert.assertEquals(100, intList.size());
+
+        ListADT<Integer> listADT = new ResizingList<>();
+        for (Integer integer : intList) {
+            listADT.push(integer);
+        }
+
+        Assert.assertEquals(intList.size(), listADT.size());
 
     }
 

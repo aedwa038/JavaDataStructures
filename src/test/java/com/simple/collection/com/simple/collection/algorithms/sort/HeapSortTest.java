@@ -1,12 +1,14 @@
 package com.simple.collection.com.simple.collection.algorithms.sort;
 
 import com.simple.collection.algorithms.sort.HeapSort;
+import com.simple.collection.utils.ArrayUtils;
 import com.simple.collection.utils.ShuffleUtils;
 import com.simple.collection.utils.SortUtils;
 import com.simple.collection.utils.StopWatch;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -26,7 +28,7 @@ public class HeapSortTest {
     public void sortTest() {
         Integer[] a = new Integer[]{2,1,4,3,6,5,9,8,7};
         HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }
@@ -35,7 +37,7 @@ public class HeapSortTest {
     public void sortTest2() {
         Integer[] a = new Integer[]{9,8,7,6,5,4,3,2,1};
         HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }
@@ -46,9 +48,9 @@ public class HeapSortTest {
         Integer[] a = new Integer[100];
         IntStream.range(0, a.length).forEach(value -> a[value] = value);
         ShuffleUtils.shuffle(a);
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }
@@ -59,11 +61,11 @@ public class HeapSortTest {
         IntStream.range(0, a.length).forEach(value -> a[value] = value);
         ShuffleUtils.shuffle(a);
 
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         StopWatch stopWatch = new StopWatch();
         HeapSort.sort(a, (o1, o2) -> o1.compareTo(o2));
         stopWatch.log();
-        SortUtils.show(a);
+        ArrayUtils.show(a);
         Assert.assertTrue(SortUtils.isSorted(a));
 
     }

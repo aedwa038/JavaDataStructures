@@ -1,9 +1,13 @@
 package com.simple.collection.list.impl;
 
 import com.simple.collection.AbstractList;
+import com.simple.collection.algorithms.sort.HeapSort;
 import com.simple.collection.list.ListADT;
+import com.simple.collection.utils.ArrayUtils;
 
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by akeem on 10/3/17.
@@ -33,7 +37,7 @@ public class ResizingArray<T> implements ListADT<T> {
 
     public T pop() {
         if(isEmpty()) {
-            return null;
+            throw new NoSuchElementException("List Over flow");
         }
 
         T toReturn = arrayList[--size];
@@ -46,14 +50,14 @@ public class ResizingArray<T> implements ListADT<T> {
 
     public T peek() {
         if(isEmpty()) {
-            return null;
+             throw new NoSuchElementException("List Over flow");
         }
         return arrayList[size - 1];
     }
 
     public T get(int index) {
         if(size < 0 && size >= arrayList.length) {
-            return null;
+            throw new IllegalArgumentException("invalid index");
         }
         return arrayList[index];
     }
@@ -79,29 +83,19 @@ public class ResizingArray<T> implements ListADT<T> {
     @Override
     public boolean remove(T t) {
         if(isEmpty() || t == null) {
-            return false;
+            throw new IllegalArgumentException("invalid parameters");
         }
-        int index = -1;
-        for (int i = 0; i < arrayList.length; i++) {
-            if(arrayList[i].equals(t)) {
-                index = i;
-            }
-        }
+        int index = indexOf(t);
 
         if(index == -1) {
             return false;
         }
 
-        for (int i = index + 1; i < arrayList.length;) {
-            arrayList[index] = arrayList[i];
-            index++;
-            i++;
-        }
-        if(halfEmpty()) {
-            resize(arrayList.length / 2);
-        }
+        removeAt(index);
         return true;
     }
+
+
 
     @Override
     public void sort(Comparator<? super T> c) {
@@ -114,7 +108,7 @@ public class ResizingArray<T> implements ListADT<T> {
     }
 
     @Override
-    public <T1> T1[] toArray() {
+    public <T> T[] toArray() {
         return null;
     }
 
@@ -154,15 +148,45 @@ public class ResizingArray<T> implements ListADT<T> {
     }
 
     @Override
-    public void remove(int index) {
-        for (int i = index + 1; i < arrayList.length;) {
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+
+    @Override
+    public void removeAt(int index) {
+        if(size <= 0 || index >= size()) {
+            throw new IllegalArgumentException("invalid index");
+        }
+        for (int i = index + 1; i < size;) {
             arrayList[index] = arrayList[i];
             index++;
             i++;
         }
 
+        arrayList[--size] = null;
         if(halfEmpty()) {
             resize(arrayList.length / 2);
+        }
+    }
+
+    class ArrayIterator implements Iterator<T> {
+        int current = 0;
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current < size;
+        }
+
+        @Override
+        public T next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return arrayList[current++];
         }
     }
 }

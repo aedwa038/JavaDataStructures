@@ -2,10 +2,15 @@ package com.simple.collection;
 
 import com.simple.collection.list.impl.ResizingArray;
 import com.simple.collection.list.ListADT;
+import com.simple.collection.utils.ArrayUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 
 /**
  * Created by akeem on 10/3/17.
@@ -71,6 +76,14 @@ public class ResizingArrayTest {
 
         Assert.assertEquals(50, intArray.size());
     }
+    @Test(expected = NoSuchElementException.class)
+    public void testPopEmpty() {
+        intArray.pop();
+    }
+    @Test(expected =  NoSuchElementException.class)
+    public void testPeekEmpty() {
+        intArray.peek();
+    }
 
     @Test
     public void testEmpty() {
@@ -104,11 +117,145 @@ public class ResizingArrayTest {
 
     @Test
     public void removeIndexTest() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.removeAt(0);
+        Assert.assertTrue(intArray.isEmpty());
 
     }
 
     @Test
-    public void removeElement() {
+    public void removeIndexTest2() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.push(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(2, intArray.size());
+        intArray.remove(5);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(1, intArray.size());
+        Assert.assertEquals(new Integer(0), intArray.get(0));
+
+    }
+
+    @Test
+    public void removeIndexTest3() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.push(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(2, intArray.size());
+        intArray.remove(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(1, intArray.size());
+        Assert.assertEquals(new Integer(5), intArray.get(0));
+
+    }
+
+    @Test
+    public void removeIndexTest4() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.push(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(2, intArray.size());
+        intArray.removeAt(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(1, intArray.size());
+        Assert.assertEquals(new Integer(0), intArray.get(0));
+
+    }
+
+    @Test
+    public void removeIndexTest5() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.push(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(2, intArray.size());
+        intArray.removeAt(1);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(1, intArray.size());
+        Assert.assertEquals(new Integer(5), intArray.get(0));
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void removeIndexTest6() {
+        Assert.assertNotNull(intArray);
+        intArray.push(5);
+        intArray.push(0);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(2, intArray.size());
+        intArray.removeAt(2);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(1, intArray.size());
+        Assert.assertEquals(new Integer(5), intArray.get(0));
+
+    }
+
+    @Test
+    public void removeSeveral() {
+        IntStream.range(0, 20).forEach(value -> intArray.push(value));
+        ArrayUtils.show(intArray);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(20 , intArray.size());
+        IntStream.range(0, 10).forEach(value -> intArray.removeAt(value));
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(10 , intArray.size());
+        ArrayUtils.show(intArray);
+
+    }
+
+    @Test
+    public void removeSeveral2() {
+        IntStream.range(0, 20).forEach(value -> intArray.push(value));
+        ArrayUtils.show(intArray);
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(20 , intArray.size());
+        IntStream.range(0, 10).forEach(value -> intArray.removeAt(0));
+        Assert.assertTrue(!intArray.isEmpty());
+        Assert.assertEquals(10 , intArray.size());
+        ArrayUtils.show(intArray);
+
+    }
+
+    @Test
+    public void indexOftest() {
+        IntStream.range(0, 20).forEach(value -> intArray.push(value));
+        IntStream.range(0, 20).forEach(value -> {
+            Assert.assertEquals(value, intArray.indexOf(value));
+        });
+    }
+
+    @Test
+    public void indexOftest2() {
+        IntStream.range(0, 20).forEach(value -> intArray.push(value));
+        Assert.assertEquals(19, intArray.indexOf(19));
+        intArray.push(20);
+        Assert.assertEquals(19, intArray.indexOf(19));
+        intArray.removeAt(10);
+        Assert.assertEquals(18, intArray.indexOf(19));
+        intArray.removeAt(18);
+        Assert.assertEquals(-1 , intArray.indexOf(19));
+        Assert.assertFalse(intArray.remove(19));
+
+    }
+
+
+    @Test
+    public void testIterator() {
+
+        for (int i = 0; i < 100; i++) {
+            intArray.push(i);
+        }
+        ListADT<Integer> integers = new ResizingArray<>();
+        for (Integer integer : intArray) {
+            integers.push(integer);
+        }
+
+        Assert.assertEquals(integers.size(), intArray.size());
+
 
     }
 

@@ -22,7 +22,7 @@ public class SortUtilsTest {
     public void showTest() {
         Integer[] integers = new Integer[]{1, 2,3, 4,5, 6, 7};
 
-        SortUtils.show(integers);
+        ArrayUtils.show(integers);
     }
 
     @Test

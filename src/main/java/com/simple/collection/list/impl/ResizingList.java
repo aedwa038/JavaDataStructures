@@ -4,6 +4,9 @@ import com.simple.collection.AbstractList;
 import com.simple.collection.list.ListADT;
 
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 /**
  * Created by akeem on 10/5/17.
@@ -138,7 +141,7 @@ public class ResizingList <T> implements ListADT <T> {
     }
 
     @Override
-    public void remove(int index) {
+    public void removeAt(int index) {
 
     }
 
@@ -200,6 +203,36 @@ public class ResizingList <T> implements ListADT <T> {
          */
         public Node<T> getNext() {
             return next;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    class LinkedListIterator implements  Iterator<T>{
+
+        private Node<T> current  = head;
+        @Override
+        public void remove() {
+
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T data = current.data;
+            current = current.getNext();
+            return data;
         }
     }
 }

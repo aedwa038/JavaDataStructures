@@ -3,12 +3,14 @@ package com.simple.collection.queue;
 import com.simple.collection.utils.SortUtils;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 /**
  * Created by akeemedwards on 11/6/17.
  */
-public class MaxPQ<Key> {
+public class MaxPQ<Key> implements Iterable<Key> {
     private Key[] a;
     private int size;
     private Comparator<Key> keyComparator;
@@ -53,5 +55,29 @@ public class MaxPQ<Key> {
         return size;
     }
 
+    @Override
+    public Iterator<Key> iterator() {
+        return new QueueIterator();
+    }
 
+    class QueueIterator implements Iterator<Key> {
+        int current = 1;
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current <= size;
+        }
+
+        @Override
+        public Key next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return a[current++];
+        }
+    }
 }

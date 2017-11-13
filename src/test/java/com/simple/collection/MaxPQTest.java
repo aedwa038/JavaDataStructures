@@ -1,11 +1,14 @@
 package com.simple.collection;
 
+import com.simple.collection.list.impl.ResizingArray;
 import com.simple.collection.queue.MaxPQ;
+import com.simple.collection.utils.ArrayUtils;
 import com.simple.collection.utils.SortUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.IntStream;
 
 /**
@@ -60,14 +63,52 @@ public class MaxPQTest {
     public  void testRandom() {
 
             Integer[] a = new Integer[]{7, 14, 1, 11, 3, 6, 12, 0, 4, 5, 2, 9, 13, 8, 10 };
-            SortUtils.show(a);
+        ArrayUtils.show(a);
             MaxPQ<Integer> integerMaxPQ = new MaxPQ<>(a.length, (o1, o2) -> o1.compareTo(o2));
 
             Arrays.stream(a).forEach(integer -> integerMaxPQ.insert(integer));
             IntStream.range(0, a.length).forEach(value -> a[value] = integerMaxPQ.max());
-            SortUtils.show(a);
+        ArrayUtils.show(a);
 
             Assert.assertTrue(SortUtils.isReversedSorted(a));
+
+
+    }
+
+
+    @Test
+    public  void testIterator() {
+
+        Integer[] a = new Integer[]{7, 14, 1, 11, 3, 6, 12, 0, 4, 5, 2, 9, 13, 8, 10 };
+        ArrayUtils.show(a);
+        MaxPQ<Integer> integerMaxPQ = new MaxPQ<>(a.length, (o1, o2) -> o1.compareTo(o2));
+
+        Arrays.stream(a).forEach(integer -> integerMaxPQ.insert(integer));
+
+        Iterator<Integer> integerIterator = integerMaxPQ.iterator();
+        Assert.assertTrue(integerIterator.hasNext());
+        Assert.assertEquals(new Integer(14) , integerIterator.next());
+
+
+
+    }
+
+    @Test
+    public  void testForeach() {
+
+        Integer[] a = new Integer[]{7, 14, 1, 11, 3, 6, 12, 0, 4, 5, 2, 9, 13, 8, 10 };
+        ArrayUtils.show(a);
+        MaxPQ<Integer> integerMaxPQ = new MaxPQ<>(a.length, (o1, o2) -> o1.compareTo(o2));
+
+        Arrays.stream(a).forEach(integer -> integerMaxPQ.insert(integer));
+
+        ResizingArray<Integer> integerResizingArray = new ResizingArray<>();
+        for (Integer integer : integerMaxPQ) {
+            integerResizingArray.push(integer);
+        }
+
+        Assert.assertEquals(integerResizingArray.size(), integerMaxPQ.size());
+
 
 
     }

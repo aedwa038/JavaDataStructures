@@ -19,11 +19,6 @@ public class SortUtils {
 
     }
 
-    public static void show(Comparable []a ) {
-        IntStream.range(0, a.length).forEach(value -> System.out.print(a[value] + " "));
-        System.out.println();
-    }
-
     public static boolean isSorted(Comparable [] a) {
 
         for (int i = 0; i < a.length - 1; i++) {
@@ -34,7 +29,7 @@ public class SortUtils {
         return true;
     }
 
-    public static boolean isReversedSorted(Comparable [] a) {
+    public static <Key extends  Comparable> boolean isReversedSorted(Key [] a) {
 
         for (int i = 0; i < a.length - 1; i++) {
             if(!isLess(a[i + 1], a[i])) {

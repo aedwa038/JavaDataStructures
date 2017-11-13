@@ -11,7 +11,7 @@ import java.util.Comparator;
  *
  * @param <T> the type parameter
  */
-public interface ListADT< T > extends AbstractList<T> {
+public interface ListADT< T > extends AbstractList<T>, Iterable<T> {
     /**
      * Get the index of an item in the list.
      *
@@ -41,7 +41,7 @@ public interface ListADT< T > extends AbstractList<T> {
      *
      * @param index the index
      */
-    void remove(int index);
+    void removeAt(int index);
 
     /**
      * Sort.
