@@ -36,13 +36,14 @@ public class ResizingList <T> implements ListADT <T> {
     @Override
     public int indexOf(T t) {
         if(size == 0) {
-            return -1;
+            throw new NoSuchElementException("Empty list");
         }
+
 
         Node<T> current = head;
         int index = 0;
-        current = current.getNext();
-        while ((!current.getData().equals(t)) || current != null) {
+
+        while ((current != null &&!current.getData().equals(t))) {
             current = current.getNext();
             index++;
         }
@@ -62,6 +63,7 @@ public class ResizingList <T> implements ListADT <T> {
         if(head.next == tail.next) {
             T data = head.data;
             head = tail = null;
+            size--;
             return data;
         }
 
@@ -77,7 +79,7 @@ public class ResizingList <T> implements ListADT <T> {
     @Override
     public T get(int index) {
         if(index > size()) {
-            return null;
+            throw  new NoSuchElementException("index greater than size");
         }
         int i = 0;
         Node<T> current = head;
@@ -115,7 +117,12 @@ public class ResizingList <T> implements ListADT <T> {
 
     @Override
     public boolean remove(T t) {
-        return false;
+        int i = this.indexOf(t);
+        if(i == -1) {
+            return false;
+        }
+        removeAt(i);
+        return true;
     }
 
     @Override
@@ -142,6 +149,32 @@ public class ResizingList <T> implements ListADT <T> {
 
     @Override
     public void removeAt(int index) {
+        if(index > size || index < 0) {
+            throw new NoSuchElementException("invalid index");
+        }
+        if(size == 1 || index == 0) {
+            pop();
+            return;
+        }
+
+        Node<T> current = head;
+        current = current.next;
+        Node<T> previous = head;
+        int i = 1;
+        while ((i <  index) && current != null) {
+            previous = previous.getNext();
+            current = current.getNext();
+            i++;
+        }
+        if(i != index) {
+            throw new NoSuchElementException("Error removing index");
+        }
+
+        previous.setNext(current.getNext());
+        current.setNext(null);
+        size--;
+
+
 
     }
 
