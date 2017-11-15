@@ -23,12 +23,14 @@ public class StackArrayImpl<T> implements StackADT<T> {
 
     @Override
     public T peek() {
-        return listADT.peek();
+        return listADT.get(listADT.size() - 1);
     }
 
     @Override
     public T pop() {
-        return listADT.pop();
+        T t = listADT.get(listADT.size() - 1);
+        listADT.removeAt(listADT.size() - 1);
+        return t;
     }
 
     @Override

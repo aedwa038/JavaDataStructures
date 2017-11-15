@@ -1,4 +1,4 @@
-package com.simple.collection;
+package com.simple.collection.bst;
 
 /**
  * Created by akeemedwards on 11/10/17.
