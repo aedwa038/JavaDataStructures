@@ -17,6 +17,9 @@ public interface BST <Key extends Comparable<Key>, Value> {
     Iterable<Key> keys();
     Iterable<Key> keys(Key lo, Key hi);
     int size(Key lo, Key hi);
+    Key floor(Key key);
+    Key ceiling(Key key);
+    void delete(Key key);
 
 
 }
